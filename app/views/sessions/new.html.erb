@@ -1,0 +1,24 @@
+<h2>Welcome To TMS</h2>
+
+
+<h1>Log in</h1>
+
+<%= form_tag sessions_path do %>
+  <p>
+    <%= label_tag :name %><br />
+    <%= text_field_tag :name, params[:name] %>
+  </p>
+  <p>
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </p>
+  <p class="button"><%= submit_tag "Log in" %></p>
+<% end %>
+
+
+
+<%= link_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in" %>
+<%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+
+
+

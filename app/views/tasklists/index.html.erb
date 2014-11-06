@@ -1,0 +1,34 @@
+<%= link_to 'Create New Task', new_tasklist_path %>
+<h1>Listing tasklists</h1>
+<%#= content_tag :div,  '',id: "list" , data: {alltasks: @tasklist} %>
+
+<table border = 1px>
+  <tr>
+    <th>Subject</th>
+    <th>Status</th>
+    <th>Description</th>
+    <th>User</th>
+    <th>Action</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasklists.each do |tasklist| %>
+  <tr>
+    <td><%= tasklist.subject %></td>
+    <td><%= tasklist.status %></td>
+    <td><%= tasklist.description %></td>
+    <td><%= tasklist.user_id %></td>
+    <td><%= link_to 'Show', tasklist %></td>
+    <td><%= link_to 'Edit', edit_tasklist_path(tasklist) if can? :edit ,@user%></td>
+    <td><%= link_to 'Destroy', tasklist, method: :delete, data: { confirm: 'Are you sure?' } if can? :edit ,@user%></td>
+  </tr>
+<% end %>
+
+</table>
+<%= will_paginate @tasklists %>
+<br />
+<div id="my_combine_div"></div>
+<%= high_chart("my_combine_div", @chart) %>
+
+

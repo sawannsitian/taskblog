@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_tasklist_path(@tasklist) %> |
+<%= link_to 'Back', tasklists_path %>
+
+<p>
+  <b>Subject:</b>
+  <%= @tasklist.subject %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @tasklist.status %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @tasklist.description %>
+</p>
+
+
+<h2>Add a comment:</h2>
+<%= form_for([@tasklist, @tasklist.comments.build]) do |f| %>
+  <p>
+    <%= f.label :body %><br>
+    <%= f.text_area :body, size: "40*40" %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+<h2>Comments</h2>
+<% @tasklist.comments.each do |comment| %>
+  <% if comment.persisted? %>
+    <b>Commenter:</b> <%= comment.user.name %><br>
+    <b>CommentBody:</b> <%= comment.body %><br>
+  <% end %>  
+<% end %>
