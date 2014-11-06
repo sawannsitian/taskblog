@@ -16,7 +16,7 @@
 <% @tasklists.each do |tasklist| %>
   <tr>
     <td><%= tasklist.subject %></td>
-    <td><%= tasklist.status %></td>
+    <td><%= Tasklist::APPROVAL_LIST.key(tasklist.status.try(:to_i)) %></td>
     <td><%= tasklist.description %></td>
     <td><%= tasklist.user_id %></td>
     <td><%= link_to 'Show', tasklist %></td>

@@ -9,7 +9,7 @@
 
 <p>
   <b>Status:</b>
-  <%= @tasklist.status %>
+  <%= Tasklist::APPROVAL_LIST.key(@tasklist.status.try(:to_i)) %>
 </p>
 
 <p>

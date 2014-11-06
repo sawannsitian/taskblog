@@ -23,7 +23,7 @@ class TasklistsController < ApplicationController
   end
 
   def edit
-    
+    @users_for_tasks = User.all
   end
 
   def create
