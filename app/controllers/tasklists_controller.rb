@@ -8,8 +8,6 @@ class TasklistsController < ApplicationController
       f.title(:text => "Task Graph")
       f.xAxis(:categories => @tasklists.collect(&:id))
       f.series(:data => @tasklists.collect(&:status).collect {|i| i.to_i})
-      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-      f.chart({:defaultSeriesType=>"column"})
   end
 
   end
@@ -19,11 +17,11 @@ class TasklistsController < ApplicationController
   end
 
   def new
-    @users_for_tasks = User.all
+    @users_for_tasks = User.data_collection
   end
 
   def edit
-    @users_for_tasks = User.all
+    @users_for_tasks = User.data_collection
   end
 
   def create

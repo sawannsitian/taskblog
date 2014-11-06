@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141104174352) do
+ActiveRecord::Schema.define(:version => 20141028165749) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commenter_id"
@@ -27,27 +27,27 @@ ActiveRecord::Schema.define(:version => 20141104174352) do
     t.string   "subject"
     t.string   "status"
     t.string   "description"
-    t.string   "user_id"
+    t.integer  "user_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "name"
-    t.string   "email"
-    t.string   "login"
     t.string   "role"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-    t.string   "hash_pass"
-    t.string   "salt_pass"
-    t.text     "provider"
-    t.integer  "uid"
     t.string   "oauth_token"
     t.datetime "oauth_expires_at"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "salt_pass"
+    t.string   "hash_pass"
     t.boolean  "active"
-    t.string   "lat"
-    t.string   "long"
+    t.float    "lat"
+    t.float    "long"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
+
+  add_index "users", ["name"], :name => "index_users_on_name"
 
 end

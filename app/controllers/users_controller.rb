@@ -6,8 +6,9 @@ class UsersController < ApplicationController
   skip_authorize_resource :only => :update
   
   def index
-    @users = User.all
-    @hash = Gmaps4rails.build_markers(@users) do |user, marker|
+    @users = User.all unless request.xhr?
+    @data_collection_user = User.data_collection
+    @hash = Gmaps4rails.build_markers(@data_collection_user) do |user, marker|
       marker.lat user.lat.to_i
       marker.lng user.long.to_i
     end

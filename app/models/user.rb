@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :role, :provider ,:uid ,:oauth_token ,:oauth_expires_at ,:active, :password, :lat, :long
   ROLELIST = ["Manager","Data Collection Exec","Customer Service Exec"]
   ACTIVELIST = {"Block" => 0, "Active" => 1}
+  scope :data_collection, lambda { where(:role => 'Data Collection Exec') }
   has_many :tasklists
 
   attr_accessor :password
