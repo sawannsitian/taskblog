@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       active_user = User.find_by_name(auth.info.name)
       if active_user
-        if active_user.active
+        if active_user.try(:active)
           return User.find_by_name(auth.info.name)
         else
           return false

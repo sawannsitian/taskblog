@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
 
   def create
   	if params[:password] && params[:name]
-   	  user = User.where("name = '#{params[:name]}'").first.active ? User.authenticate(params[:name], params[:password]) : nil
+   	  user = User.where("name = '#{params[:name]}'").first.try(:active) ? User.authenticate(params[:name], params[:password]) : nil
     else
       user = User.from_omniauth(env["omniauth.auth"])
     end
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 	    flash[:notice] = 'Please Login First'
 		  redirect_to :controller => 'tasklists', :action => 'index'
 	  else
-	    flash[:notice] = "You are Blocked"
+	    flash[:notice] = "You Have Entered Wrong Name And Password or You are Blocked by Admin"
 	    render "new"
 	  end
   end
