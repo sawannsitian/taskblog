@@ -9,8 +9,8 @@ class UsersController < ApplicationController
     @users = User.all unless request.xhr?
     @data_collection_user = User.data_collection
     @hash = Gmaps4rails.build_markers(@data_collection_user) do |user, marker|
-      marker.lat user.latitude.to_f
-      marker.lng user.longitude.to_f
+      marker.lat user.lat.to_f
+      marker.lng user.long.to_f
     end
   end
 
