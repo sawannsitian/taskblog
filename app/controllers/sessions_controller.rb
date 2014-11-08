@@ -11,8 +11,7 @@ class SessionsController < ApplicationController
     
 	  if user
 	    session[:user_id] = user.id
-	    flash[:notice] = 'Please Login First'
-		  redirect_to :controller => 'tasklists', :action => 'index'
+	    redirect_to :controller => 'tasklists', :action => 'index'
 	  else
 	    flash[:notice] = "You Have Entered Wrong Name And Password or You are Blocked by Admin"
 	    render "new"
