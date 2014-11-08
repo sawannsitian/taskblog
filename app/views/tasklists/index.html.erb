@@ -18,7 +18,7 @@
     <td><%= tasklist.subject %></td>
     <td><%= Tasklist::APPROVAL_LIST.key(tasklist.status.try(:to_i)) %></td>
     <td><%= tasklist.description %></td>
-    <td><%= tasklist.user_id %></td>
+    <td><%= tasklist.user.name %></td>
     <td><%= link_to 'Show', tasklist %></td>
     <td><%= link_to 'Edit', edit_tasklist_path(tasklist) if can? :edit ,@user%></td>
     <td><%= link_to 'Destroy', tasklist, method: :delete, data: { confirm: 'Are you sure?' } if can? :delete ,@user%></td>
