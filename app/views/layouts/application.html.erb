@@ -17,8 +17,8 @@
     <%= link_to "Users", users_path %>
     <div style="display:none;">
       <%= form_for(@current_user, method: "put") do |f| %>
-      <%= f.text_field :lat %>
-      <%= f.text_field :long %>
+      <%= f.text_field :latitude %>
+      <%= f.text_field :longitude %>
       <%= f.button :submit %>
       <% end %>
     </div>
@@ -39,8 +39,8 @@
     navigator.geolocation.getCurrentPosition(function(position) {
       var c = position.coords
       var location = c.latitude +", "+ c.longitude
-      $("#user_lat").val(c.latitude)
-      $("#user_long").val( c.longitude)
+      $("#user_latitude").val(c.latitude)
+      $("#user_longitude").val( c.longitude)
       var data = $(".edit_user").serialize();
       $.ajax({
         type: "PUT",

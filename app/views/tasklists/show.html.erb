@@ -31,7 +31,7 @@
 <h2>Comments</h2>
 <% @tasklist.comments.each do |comment| %>
   <% if comment.persisted? %>
-    <b>Commenter:</b> <%= comment.user.name %><br>
+    <b>Commenter:</b> <%= comment.user.try(:name) %><br>
     <b>CommentBody:</b> <%= comment.body %><br>
   <% end %>  
 <% end %>

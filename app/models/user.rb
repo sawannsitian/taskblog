@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :role, :provider ,:uid ,:oauth_token ,:oauth_expires_at ,:active, :password, :lat, :long
-  ROLELIST = ["Manager","Data Collection Exec","Customer Service Exec"]
-  ACTIVELIST = {"Block" => 0, "Active" => 1}
+  attr_accessible :name, :role, :provider ,:uid ,:active, :password, :latitude, :longitude, :email
+  # validates :password , presence: true, length: { minimum: 4 }
+  # validates :email,:name, presence: true, uniqueness: true
+  # validates_email_format_of :email, :message => 'email add is not valid'
+
+  ROLELIST = ["Data Collection Exec","Manager","Customer Service Exec"]
+  ACTIVELIST = {"Active" => 1,"Block" => 0}
   scope :data_collection, lambda { where(:role => 'Data Collection Exec') }
   has_many :tasklists
 
@@ -19,21 +23,21 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
-      active_user = User.find_by_name(auth.info.name)
+      active_user = User.find_by_uid(auth.uid)
       if active_user
         if active_user.try(:active)
-          return User.find_by_name(auth.info.name)
+          return active_user
         else
           return false
         end
       else
         user.provider = auth.provider
         user.uid = auth.uid
+        user.password = auth.uid
         user.role = "Data Collection Exec"
         user.active = 1
         user.name = auth.info.name
-        user.oauth_token = auth.credentials.token
-        user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+        user.email = auth.info.email
         user.save!
       end
     end

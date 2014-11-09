@@ -15,17 +15,21 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div>
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </div>
   <p>
     <%= f.label :password %><br />
     <%= f.password_field :password %>
   </p>
   <div class="field">
     <%= f.label :role %><br />
-    <%= f.select(:role, options_for_select(User::ROLELIST.collect { |l| [l.capitalize, l]}), {:include_blank => "Please Select"})  %>
+    <%= f.select(:role, options_for_select(User::ROLELIST.collect { |l| [l.capitalize, l]}))  %>
   </div>
   <div class="field">
     <%= f.label :active %><br />
-    <%= f.select(:active, options_for_select(User::ACTIVELIST), {:include_blank => "Please Select"})  %>
+    <%= f.select(:active, options_for_select(User::ACTIVELIST))  %>
   </div>
   <div class="actions">
     <%= f.submit %>
