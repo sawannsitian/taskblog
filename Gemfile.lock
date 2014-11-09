@@ -152,6 +152,8 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    validates_email_format_of (1.6.1)
+      i18n
     will_paginate (3.0.7)
 
 PLATFORMS
@@ -177,4 +179,5 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   twilio-ruby
   uglifier (>= 1.0.3)
+  validates_email_format_of
   will_paginate (~> 3.0)

@@ -8,5 +8,6 @@ class CreateTasklists < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :tasklists, :tasklist_id
   end
 end
