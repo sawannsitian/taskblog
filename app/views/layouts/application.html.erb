@@ -33,7 +33,7 @@
 
 <%= yield %>
 
-<% if @current_user && @current_user.role == "Data Collection Exec" %>
+<% if @current_user && @current_user.try(:role) == "Data Collection Exec" %>
   <script>
     function updateCurrentLocation(){
     navigator.geolocation.getCurrentPosition(function(position) {
