@@ -13,6 +13,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, '1039541579405000', '918588f713804658938787244d2af593', {:client_options => {:ssl => {:ca_file => Rails.root.join("cacert.pem").to_s}}}
 end
 
-# Rails.application.config.middleware.use OmniAuth::Builder do
-#    provider :twitter, ‘YOUR APP CONSUMER KEY’, ‘YOUR APP CONSUMER SECRET’
-# end
+Rails.application.config.middleware.use OmniAuth::Builder do
+   provider :twitter, ‘APzVjtqsWmAtJPNt6V6ROlZC4’, ‘bKttP4yehlc58grurG7cIXygTm9hBb1POyCnzW3cLe3h8VjMrC’
+end
