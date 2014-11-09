@@ -3,8 +3,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-  	if params[:password] && params[:name]
-   	  user = User.where("name = '#{params[:name]}'").first.try(:active) ? User.authenticate(params[:name], params[:password]) : nil
+  	if params[:password] && params[:email]
+   	  user = User.where("email = '#{params[:email]}'").first.try(:active) ? User.authenticate(params[:email], params[:password]) : nil
     else
       user = User.from_omniauth(env["omniauth.auth"])
     end

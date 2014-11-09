@@ -23,11 +23,11 @@
   </p>
   <p>
     <%= f.label :role %><br />
-    <%= f.select(:role, options_for_select(User::ROLELIST.collect { |l| [l.capitalize, l]}), {:include_blank => "Please Select"})  %>
+    <%= f.select(:role, options_for_select(User::ROLELIST.collect { |l| [l.capitalize, l]}))  %>
   </p>
   <p>
     <%= f.label :active %><br />
-    <%= f.select(:active, options_for_select(User::ACTIVELIST), {:include_blank => "Please Select"})  %>
+    <%= f.select(:active, options_for_select(User::ACTIVELIST))  %>
   </p>
   
   <p class="button"><%= f.submit %></p>
